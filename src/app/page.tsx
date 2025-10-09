@@ -1,10 +1,9 @@
-import {
-  Hero,
-  Biography,
-  TechList,
-  Experience,
-  ContentIndex,
-} from "@/slices";
+import Biography from "@/slices/Biography";
+import ContentIndex from "@/slices/ContentIndex";
+import Experience from "@/slices/Experience";
+import Hero from "@/slices/Hero";
+import TechList from "@/slices/TechList";
+
 import {
   hero,
   biography,

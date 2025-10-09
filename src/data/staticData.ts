@@ -3,7 +3,6 @@ export const settings = {
   nav_item: [
     { link: "/#about", label: "About" },
     { link: "/#projects", label: "Projects" },
-    { link: "/#blog", label: "Blog" },
   ],
   cta_link: "mailto:john.doe@example.com",
   cta_label: "Contact Me",
@@ -12,7 +11,7 @@ export const settings = {
   linkedin_link: "https://linkedin.com",
   meta_title: "John Doe - Creative Developer",
   meta_description: "A creative portfolio website built with Next.js.",
-  og_image: "/og-image.png", // Pastikan gambar ini ada di folder public
+  og_image: "/og-image.png",
 };
 
 export const hero = {
@@ -24,7 +23,7 @@ export const hero = {
 export const biography = {
   heading: "About Me",
   body: "Saya seorang pengembang kreatif dengan hasrat untuk membangun aplikasi web yang indah dan fungsional. Saya memiliki pengalaman dalam berbagai teknologi frontend dan backend, dan saya selalu bersemangat untuk mempelajari hal-hal baru.",
-  avatar: "/avatar.png", // Pastikan gambar ini ada di folder public
+  avatar: "/noisetexture.jpg", // Pastikan gambar ini ada di folder public
   button_text: "Resume Saya",
   button_link: "/resume.pdf", // Pastikan file ini ada di folder public
 };
@@ -66,14 +65,13 @@ export const projects = {
   description:
     "Berikut adalah beberapa proyek yang telah saya kerjakan. Setiap proyek menunjukkan keahlian saya dalam teknologi yang berbeda.",
   viewMoreText: "View Project",
-  fallbackItemImage: "/fallback.png", // Pastikan gambar ini ada di folder public
+  fallbackItemImage: "/noisetexture.jpg",
   items: [
     {
       uid: "project-1",
       data: {
         title: "3D Portfolio Website",
-        image: "/project1.png", // Ganti dengan path gambar Anda
-        tags: ["Next.js", "Three.js"],
+        image: { url: "/noisetexture.jpg", alt: "3D Portfolio" },
         date: "2023-10-26",
       },
       tags: ["Next.js", "Three.js"],
@@ -82,8 +80,7 @@ export const projects = {
       uid: "project-2",
       data: {
         title: "E-commerce Platform",
-        image: "/project2.png", // Ganti dengan path gambar Anda
-        tags: ["React", "Node.js"],
+        image: { url: "/noisetexture.jpg", alt: "E-commerce" },
         date: "2023-08-15",
       },
       tags: ["React", "Node.js"],
