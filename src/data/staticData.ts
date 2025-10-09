@@ -1,0 +1,92 @@
+export const settings = {
+  name: "John Doe",
+  nav_item: [
+    { link: "/#about", label: "About" },
+    { link: "/#projects", label: "Projects" },
+    { link: "/#blog", label: "Blog" },
+  ],
+  cta_link: "mailto:john.doe@example.com",
+  cta_label: "Contact Me",
+  twitter_link: "https://twitter.com",
+  github_link: "https://github.com",
+  linkedin_link: "https://linkedin.com",
+  meta_title: "John Doe - Creative Developer",
+  meta_description: "A creative portfolio website built with Next.js.",
+  og_image: "/og-image.png", // Pastikan gambar ini ada di folder public
+};
+
+export const hero = {
+  first_name: "John",
+  last_name: "Doe",
+  tag_line: "Creative Developer",
+};
+
+export const biography = {
+  heading: "About Me",
+  body: "Saya seorang pengembang kreatif dengan hasrat untuk membangun aplikasi web yang indah dan fungsional. Saya memiliki pengalaman dalam berbagai teknologi frontend dan backend, dan saya selalu bersemangat untuk mempelajari hal-hal baru.",
+  avatar: "/avatar.png", // Pastikan gambar ini ada di folder public
+  button_text: "Resume Saya",
+  button_link: "/resume.pdf", // Pastikan file ini ada di folder public
+};
+
+export const techList = {
+  title: "Technologies",
+  items: [
+    { tech_name: "React", tech_color: "#61DAFB" },
+    { tech_name: "Next.js", tech_color: "#000000" },
+    { tech_name: "Three.js", tech_color: "#000000" },
+    { tech_name: "GSAP", tech_color: "#88CE02" },
+    { tech_name: "Tailwind CSS", tech_color: "#06B6D4" },
+  ],
+};
+
+export const experience = {
+  heading: "Experience",
+  items: [
+    {
+      title: "Senior Interactive Designer",
+      time_period: "2019 - Present",
+      institution: "Google",
+      description:
+        "Memimpin tim desain dalam menciptakan pengalaman web yang menakjubkan secara visual dan interaktif. Menerapkan desain UI/UX mutakhir, berkolaborasi dengan pengembang untuk mewujudkan konsep, dan memastikan konsistensi merek di seluruh platform digital.",
+    },
+    {
+      title: "UI/UX Designer",
+      time_period: "2017 - 2019",
+      institution: "Facebook",
+      description:
+        "Merancang antarmuka yang ramah pengguna untuk aplikasi seluler dan web. Melakukan penelitian pengguna dan pengujian kegunaan untuk menginformasikan keputusan desain.",
+    },
+  ],
+};
+
+export const projects = {
+  heading: "Projects",
+  contentType: "Projects",
+  description:
+    "Berikut adalah beberapa proyek yang telah saya kerjakan. Setiap proyek menunjukkan keahlian saya dalam teknologi yang berbeda.",
+  viewMoreText: "View Project",
+  fallbackItemImage: "/fallback.png", // Pastikan gambar ini ada di folder public
+  items: [
+    {
+      uid: "project-1",
+      data: {
+        title: "3D Portfolio Website",
+        image: "/project1.png", // Ganti dengan path gambar Anda
+        tags: ["Next.js", "Three.js"],
+        date: "2023-10-26",
+      },
+      tags: ["Next.js", "Three.js"],
+    },
+    {
+      uid: "project-2",
+      data: {
+        title: "E-commerce Platform",
+        image: "/project2.png", // Ganti dengan path gambar Anda
+        tags: ["React", "Node.js"],
+        date: "2023-08-15",
+      },
+      tags: ["React", "Node.js"],
+    },
+  ],
+};
