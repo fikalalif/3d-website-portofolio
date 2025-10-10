@@ -1,10 +1,11 @@
-import { DateField } from "@prismicio/client";
 
-export function formatDate(dateStr: DateField): string {
+
+// Ubah tipe `DateField` menjadi `string`
+export function formatDate(dateStr: string): string {
   if (!dateStr) return "";
   const date = new Date(dateStr);
 
-  // Options for formatting
+  // Opsi untuk pemformatan
   const options: Intl.DateTimeFormatOptions = {
     weekday: "long",
     year: "numeric",
@@ -12,6 +13,6 @@ export function formatDate(dateStr: DateField): string {
     day: "numeric",
   };
 
-  // Format the date
+  // Format tanggalnya
   return new Intl.DateTimeFormat("en-US", options).format(date);
 }

@@ -1,34 +1,30 @@
 import { MetadataRoute } from "next";
-import { createClient } from "@/prismicio";
+import { projects } from "@/data/staticData";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const client = createClient();
-  const homepage = await client.getSingle("homepage");
-  const pages = await client.getAllByType("page");
-  const blogPosts = await client.getAllByType("blog_post");
-  const projects = await client.getAllByType("project");
+export default function sitemap(): MetadataRoute.Sitemap {
+  const siteRoot = "https://demo.com"; // Ganti dengan URL situs Anda
 
-  const siteRoot = "https://demo.com";
+  // Rute statis
+  const staticRoutes = [
+    {
+      url: siteRoot,
+      lastModified: new Date().toISOString(),
+    },
+    {
+      url: `${siteRoot}/#about`,
+      lastModified: new Date().toISOString(),
+    },
+    {
+      url: `${siteRoot}/#projects`,
+      lastModified: new Date().toISOString(),
+    },
+  ];
 
-  const homepageRoute = {
-    url: siteRoot,
-    lastModified: homepage.last_publication_date,
-  };
-
-  const pagesRoutes = pages.map((page) => ({
-    url: siteRoot + "/" + page.uid,
-    lastModified: page.last_publication_date,
+  // Rute dinamis dari data proyek
+  const projectsRoutes = projects.items.map((project) => ({
+    url: `${siteRoot}/project/${project.uid}`,
+    lastModified: project.data.date,
   }));
 
-  const blogPostsRoutes = blogPosts.map((post) => ({
-    url: siteRoot + "/blog/" + post.uid,
-    lastModified: post.last_publication_date,
-  }));
-
-  const projectsRoutes = projects.map((project) => ({
-    url: siteRoot + "/project/" + project.uid,
-    lastModified: project.last_publication_date,
-  }));
-
-  return [homepageRoute, ...pagesRoutes, ...blogPostsRoutes, ...projectsRoutes];
+  return [...staticRoutes, ...projectsRoutes];
 }

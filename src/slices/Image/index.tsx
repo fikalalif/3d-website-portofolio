@@ -1,23 +1,24 @@
-import Bounded from "@/components/Bounded";
-import { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
-import { SliceComponentProps } from "@prismicio/react";
+import Image from "next/image";
 
-/**
- * Props for `Image`.
- */
-export type ImageProps = SliceComponentProps<Content.ImageSlice>;
+type ImageProps = {
+  slice: {
+    image: {
+      url: string;
+      alt: string;
+    };
+  };
+};
 
-/**
- * Component for "Image" Slices.
- */
-const Image = ({ slice }: ImageProps): JSX.Element => {
+const ImageSlice = ({ slice }: ImageProps): JSX.Element => {
   return (
-    <PrismicNextImage
-      field={slice.primary.image}
-      className="not-prose w-full h-full rounded-md  my-10 md:my-14 lg:my-16"
+    <Image
+      src={slice.image.url}
+      alt={slice.image.alt}
+      width={1000} // Ganti dengan lebar yang sesuai
+      height={600} // Ganti dengan tinggi yang sesuai
+      className="not-prose my-10 h-auto w-full rounded-md md:my-14 lg:my-16"
     />
   );
 };
 
-export default Image;
+export default ImageSlice;

@@ -1,23 +1,23 @@
 export const settings = {
-  name: "John Doe",
+  name: "Fikal Alif",
   nav_item: [
     { link: "/#about", label: "About" },
     { link: "/#projects", label: "Projects" },
   ],
-  cta_link: "mailto:john.doe@example.com",
+  cta_link: "mailto:fikalalif26@gmail.com",
   cta_label: "Contact Me",
   twitter_link: "https://twitter.com",
   github_link: "https://github.com",
   linkedin_link: "https://linkedin.com",
-  meta_title: "John Doe - Creative Developer",
+  meta_title: "Fikal Alif - Fullstack Developer & 3D Enthusiast",
   meta_description: "A creative portfolio website built with Next.js.",
   og_image: "/og-image.png",
 };
 
 export const hero = {
-  first_name: "John",
-  last_name: "Doe",
-  tag_line: "Creative Developer",
+  first_name: "Fikal",
+  last_name: "Alif",
+  tag_line: "Fullstack Developer & 3D Enthusiast",
 };
 
 export const biography = {
@@ -43,16 +43,9 @@ export const experience = {
   heading: "Experience",
   items: [
     {
-      title: "Senior Interactive Designer",
-      time_period: "2019 - Present",
-      institution: "Google",
-      description:
-        "Memimpin tim desain dalam menciptakan pengalaman web yang menakjubkan secara visual dan interaktif. Menerapkan desain UI/UX mutakhir, berkolaborasi dengan pengembang untuk mewujudkan konsep, dan memastikan konsistensi merek di seluruh platform digital.",
-    },
-    {
-      title: "UI/UX Designer",
-      time_period: "2017 - 2019",
-      institution: "Facebook",
+      title: "Membuat Website Perusahaan Tempat Peraduan Group",
+      time_period: "2025",
+      institution: "Freelance",
       description:
         "Merancang antarmuka yang ramah pengguna untuk aplikasi seluler dan web. Melakukan penelitian pengguna dan pengujian kegunaan untuk menginformasikan keputusan desain.",
     },
