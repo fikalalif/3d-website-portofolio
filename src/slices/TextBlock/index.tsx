@@ -1,19 +1,22 @@
-import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import Bounded from "@/components/Bounded";
+
+// Definisikan tipe untuk props slice
+type TextBlockProps = {
+  slice: {
+    text: string; // Teks sekarang hanya string biasa
+  };
+};
 
 /**
- * Props for `TextBlock`.
- */
-export type TextBlockProps = SliceComponentProps<Content.TextBlockSlice>;
-
-/**
- * Component for "TextBlock" Slices.
+ * Komponen untuk "TextBlock" Slices.
  */
 const TextBlock = ({ slice }: TextBlockProps): JSX.Element => {
   return (
-    <div className="max-w-prose">
-      <PrismicRichText field={slice.primary.text} />
-    </div>
+    <Bounded>
+      <div className="prose prose-lg prose-invert max-w-prose">
+        <p>{slice.text}</p>
+      </div>
+    </Bounded>
   );
 };
 
