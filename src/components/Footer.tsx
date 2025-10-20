@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import Link from "next/link";
 import Bounded from "@/components/Bounded";
-import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { settings } from "@/data/staticData";
 
 export default function Footer() {
@@ -68,7 +68,7 @@ export default function Footer() {
               className="p-2 text-2xl text-slate-300 transition-all duration-150 hover:scale-125 hover:text-yellow-400"
               aria-label={settings.name + " on Twitter"}
             >
-              <FaTwitter />
+              <FaXTwitter />
             </Link>
           )}
           {settings.linkedin_link && (
