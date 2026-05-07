@@ -64,24 +64,32 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
   };
 
   return (
-    <Bounded ref={component}>
-      <div className="grid min-h-[70vh] grid-cols-1 items-center md:grid-cols-2">
-        <Shapes />
-        <div className="col-start-1 md:row-start-1 " data-speed=".2">
-          <h1
-            className="mb-8 text-[clamp(3rem,20vmin,20rem)] font-extrabold leading-none tracking-tighter"
-            aria-label={slice.first_name + " " + slice.last_name}
-          >
-            <span className="block text-slate-300 ">
-              {renderLetters(slice.first_name, "first")}
-            </span>
-            <span className="-mt-[.2em] block text-slate-500  ">
-              {renderLetters(slice.last_name, "last")}
+    <Bounded ref={component} className="relative overflow-hidden pt-32 md:pt-48">
+      {/* Background Glow */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+
+      <div className="grid min-h-[60vh] grid-cols-1 md:grid-cols-2 items-center">
+        <div className="col-start-1 flex flex-col items-center md:items-start text-center md:text-left">
+          <h1 className="mb-6 text-[clamp(3rem,15vmin,10rem)] font-extrabold leading-none tracking-tighter">
+            <span className="block text-slate-300 name-animation">Fikal</span>
+            <span className="block bg-gradient-to-tr from-cyan-400 via-emerald-400 to-cyan-500 bg-clip-text text-transparent name-animation">
+              Alif
             </span>
           </h1>
-          <span className="job-title block bg-gradient-to-tr from-yellow-500 via-yellow-200 to-yellow-500 bg-clip-text text-2xl font-bold uppercase tracking-[.2em] text-transparent opacity-0 md:text-4xl">
-            {slice.tag_line}
-          </span>
+
+          {/* Tagline bergaya Badge Kode */}
+          <div className="job-badge inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-bold text-cyan-400 backdrop-blur-sm md:px-6 md:py-2 md:text-xl">
+            <span className="relative flex h-2 w-2 md:h-3 md:w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-emerald-500"></span>
+            </span>
+            Fullstack & Mobile Developer
+          </div>
+        </div>
+
+        {/* 3D Shapes */}
+        <div className="relative h-[400px] md:h-[600px] w-full">
+          <Shapes />
         </div>
       </div>
     </Bounded>

@@ -21,12 +21,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-zinc-900">
-      <body className={clsx(urbanist.className, "relative min-h-screen overflow-x-hidden")}>
+      {/* 1. Hapus overflow-x-hidden dari body agar GSAP Scroll tidak macet */}
+      <body className={clsx(urbanist.className, "relative min-h-screen")}>
         <Header />
-        {children}
-        <div className="background-gradient absolute inset-0 -z-50 max-h-screen" />
-        <div className="pointer-events-none absolute inset-0 -z-40 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div>
+        
+        {/* 2. BUNGKUS KONTEN DENGAN MAIN: Ini kunci untuk memotong elemen yang bocor ke kanan pada mobile */}
+        <main className="w-full overflow-hidden">
+          {children}
+        </main>
+        
         <Footer />
+
+        {/* 3. UBAH absolute MENJADI fixed: Agar background menempel sempurna di layar dan tidak menambah lebar/tinggi halaman */}
+        <div className="background-gradient fixed inset-0 -z-50 h-screen w-screen" />
+        <div className="pointer-events-none fixed inset-0 -z-40 h-screen w-screen bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div>
       </body>
     </html>
   );

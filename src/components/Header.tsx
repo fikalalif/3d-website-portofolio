@@ -4,8 +4,11 @@ import { settings } from "@/data/staticData";
 
 export default function Header() {
   return (
-    <header className="top-0 z-50 mx-auto max-w-7xl md:sticky md:top-4">
-      <NavBar settings={settings} />
+    // Padding p-4 diubah jadi p-2 untuk mobile, p-4 untuk md (desktop)
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center p-2 md:top-4 md:p-4 pointer-events-none">
+      <div className="w-full max-w-4xl pointer-events-auto">
+        <NavBar settings={settings} />
+      </div>
     </header>
   );
 }

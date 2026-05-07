@@ -64,7 +64,7 @@ const TechList = ({ slice }: TechListProps): JSX.Element => {
     <section
       data-slice-type="tech_list"
       data-slice-variation="default"
-      className="wrapper overflow-hidden"
+      className="wrapper overflow-hidden max-w-[100vw]"
       ref={component}
     >
       <Bounded as="div">
@@ -91,8 +91,8 @@ const TechList = ({ slice }: TechListProps): JSX.Element => {
               >
                 {tech_name}
               </span>
-              <span className="text-3xl">
-                <MdCircle />
+              <span className="text-5xl font-black text-cyan-500 opacity-50">
+                +
               </span>
             </React.Fragment>
           ))}

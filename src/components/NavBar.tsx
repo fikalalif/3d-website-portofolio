@@ -7,7 +7,6 @@ import { MdMenu, MdClose } from "react-icons/md";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
 
-// Tipe data untuk settings
 type Settings = {
   name: string;
   nav_item: { link: string; label: string }[];
@@ -15,142 +14,132 @@ type Settings = {
   cta_label: string;
 };
 
-// Komponen untuk Logo/Nama
 function NameLogo({ name }: { name: string | undefined }) {
   return (
     <Link
       href="/"
       aria-label="Home page"
-      className="text-xl font-extrabold tracking-tighter text-slate-900"
+      className="text-2xl font-black tracking-tighter text-slate-100 drop-shadow-md"
     >
       {name}
     </Link>
   );
 }
 
-// Komponen untuk Menu Desktop
-function DesktopMenu({
-  settings,
-  pathname,
-}: {
-  settings: Settings;
-  pathname: string;
-}) {
+function DesktopMenu({ settings, pathname }: { settings: Settings; pathname: string }) {
   return (
-    <div className="relative z-50 hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
+    <div className="relative z-50 hidden flex-row items-center gap-4 bg-transparent py-0 md:flex">
       {settings.nav_item.map(({ link, label }, index) => (
         <React.Fragment key={label}>
           <li>
             <Link
               href={link}
               className={clsx(
-                "group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-900",
+                "group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-300 transition-colors hover:text-cyan-400",
               )}
               aria-current={pathname === link ? "page" : undefined}
             >
               <span
                 className={clsx(
-                  "absolute inset-0 z-0 h-full rounded bg-yellow-300 transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
-                  pathname === link ? "translate-y-6" : "translate-y-8",
+                  "absolute inset-0 z-0 h-full rounded bg-cyan-500/20 transition-transform duration-300 ease-in-out group-hover:translate-y-0",
+                  pathname === link ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                 )}
               />
               <span className="relative">{label}</span>
             </Link>
           </li>
           {index < settings.nav_item.length - 1 && (
-            <span
-              className="hidden text-4xl font-thin leading-[0] text-slate-400 md:inline"
-              aria-hidden="true"
-            >
+            <span className="hidden text-xl font-thin text-slate-600 md:inline" aria-hidden="true">
               /
             </span>
           )}
         </React.Fragment>
       ))}
       <li>
-        <Button
-          linkField={settings.cta_link}
-          label={settings.cta_label}
-          className="ml-3"
-        />
+        <Button linkField={settings.cta_link} label={settings.cta_label} className="ml-4" />
       </li>
     </div>
   );
 }
 
-// Komponen Utama NavBar
 export default function NavBar({ settings }: { settings: Settings }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Main navigation">
-      <ul className="flex flex-col justify-between rounded-b-lg bg-slate-50 px-4 py-2 md:m-4 md:flex-row md:items-center md:rounded-xl">
-        <div className="flex items-center justify-between">
-          <NameLogo name={settings.name} />
-          <button
-            aria-expanded={open}
-            aria-label="Open menu"
-            className="block p-2 text-2xl text-slate-800 md:hidden"
-            onClick={() => setOpen(true)}
-          >
-            <MdMenu />
-          </button>
-        </div>
-        <div
-          className={clsx(
-            "fixed bottom-0 left-0 right-0 top-0 z-50 flex flex-col items-end gap-4 bg-slate-50 pr-4 pt-14 transition-transform duration-300 ease-in-out md:hidden",
-            open ? "translate-x-0" : "translate-x-[100%]",
-          )}
+    <nav aria-label="Main navigation" className="w-full">
+      
+      {/* KOTAK KACA: Sekarang dipasang di <ul> saja biar menu mobile tidak terjebak */}
+      <ul className="flex items-center justify-between bg-slate-950/60 backdrop-blur-md border border-white/10 py-2 px-4 md:py-3 md:px-6 rounded-full shadow-2xl shadow-cyan-500/10">
+        <NameLogo name={settings.name} />
+        
+        {/* Tombol Hamburger Mobile */}
+        <button
+          aria-expanded={open}
+          aria-label="Open menu"
+          className="block p-1 text-2xl text-slate-200 md:hidden"
+          onClick={() => setOpen(true)}
         >
-          <button
-            aria-label="Close menu"
-            aria-expanded={open}
-            className="fixed right-4 top-3 block p-2 text-2xl text-slate-800 md:hidden "
-            onClick={() => setOpen(false)}
-          >
-            <MdClose />
-          </button>
-          {settings.nav_item.map(({ link, label }, index) => (
-            <React.Fragment key={label}>
-              <li className="first:mt-8">
-                <Link
-                  href={link}
-                  className={clsx(
-                    "group relative block overflow-hidden rounded px-3 text-3xl font-bold text-slate-900 ",
-                  )}
-                  onClick={() => setOpen(false)}
-                  aria-current={pathname === link ? "page" : undefined}
-                >
-                  <span
-                    className={clsx(
-                      "absolute inset-0 z-0 h-full translate-y-12 rounded bg-yellow-300 transition-transform duration-300 ease-in-out group-hover:translate-y-0",
-                      pathname === link ? "translate-y-6" : "translate-y-18",
-                    )}
-                  />
-                  <span className="relative">{label}</span>
-                </Link>
-              </li>
-              {index < settings.nav_item.length - 1 && (
-                <span
-                  className="hidden text-4xl font-thin leading-[0] text-slate-400 md:inline"
-                  aria-hidden="true"
-                >
-                  /
-                </span>
-              )}
-            </React.Fragment>
+          <MdMenu />
+        </button>
+
+        {/* Menu Desktop */}
+        <div className="hidden md:flex items-center gap-6">
+          {settings.nav_item.map(({ link, label }) => (
+            <li key={label}>
+              <Link
+                href={link}
+                className={clsx(
+                  "relative px-3 py-1 text-base font-bold transition-colors hover:text-cyan-400",
+                  pathname === link ? "text-cyan-400" : "text-slate-300"
+                )}
+              >
+                {label}
+              </Link>
+            </li>
           ))}
-          <li>
-            <Button
-              linkField={settings.cta_link}
-              label={settings.cta_label}
-              className="ml-3"
+          <Button linkField={settings.cta_link} label={settings.cta_label} />
+        </div>
+      </ul>
+
+      {/* OVERLAY MENU MOBILE: Sekarang bebas 1 layar penuh */}
+      <div
+        className={clsx(
+          "fixed inset-0 z-[99999] flex flex-col items-center justify-center gap-8 bg-slate-950/98 backdrop-blur-3xl transition-transform duration-500 ease-in-out md:hidden",
+          open ? "translate-y-0" : "-translate-y-full"
+        )}
+      >
+        <button
+          aria-label="Close menu"
+          className="absolute right-8 top-8 p-2 text-4xl text-slate-200"
+          onClick={() => setOpen(false)}
+        >
+          <MdClose />
+        </button>
+
+        <div className="flex flex-col items-center gap-8">
+          {settings.nav_item.map(({ link, label }) => (
+            <li key={label} className="list-none">
+              <Link
+                href={link}
+                className="text-5xl font-black text-slate-100 hover:text-cyan-400 transition-colors"
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+          
+          <li className="list-none mt-4" onClick={() => setOpen(false)}>
+            <Button 
+              linkField={settings.cta_link} 
+              label={settings.cta_label} 
+              className="text-xl px-8 py-4" 
             />
           </li>
         </div>
-        <DesktopMenu settings={settings} pathname={pathname} />
-      </ul>
+      </div>
+
     </nav>
   );
 }
