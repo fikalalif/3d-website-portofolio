@@ -29,14 +29,14 @@ export const biography = {
 };
 
 export const techList = {
-  title: "Technologies",
+  title: "Tech Stack",
   items: [
     { tech_name: "Next.js", tech_color: "#ffffff" },
     { tech_name: "Jetpack Compose", tech_color: "#02569B" },
     { tech_name: "FastAPI", tech_color: "#009688" },
-    { tech_name: "Python", tech_color: "#3776AB" },
+    { tech_name: "Express.js", tech_color: "#3776AB" },
     { tech_name: "Supabase", tech_color: "#3ECF8E" },
-    { tech_name: "Tailwind CSS", tech_color: "#06B6D4" },
+    { tech_name: "PostgreSQL", tech_color: "#06B6D4" },
     { tech_name: "Three.js", tech_color: "#ffffff" },
     { tech_name: "GSAP", tech_color: "#88CE02" },
   ],
