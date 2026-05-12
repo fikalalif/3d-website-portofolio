@@ -6,9 +6,9 @@ export const settings = {
   ],
   cta_link: "mailto:fikalalif26@gmail.com",
   cta_label: "Contact Me",
-  twitter_link: "https://x.com/yesterdayisday",
+  instagram_link: "https://www.instagram.com/fikalalif",
   github_link: "https://github.com/fikalalif",
-  linkedin_link: "https://www.linkedin.com/in/fikal-alif-a0a628258/",
+  linkedin_link: "https://id.linkedin.com/in/fikal-alif-a0a628258",
   meta_title: "Fikal Alif - Fullstack & Mobile Developer",
   meta_description: "A creative portfolio website built with Next.js and Three.js.",
   og_image: "/og-image.png",
@@ -25,7 +25,7 @@ export const biography = {
   body: "I am a Full-Stack and Mobile Developer. I have a strong passion for building impactful applications, ranging from AI-driven backend systems to visually engaging mobile apps. When I'm not writing code on my Ubuntu setup, you can find me exploring the latest tech trends or working on personal projects that push the boundaries of what's possible.",
   avatar: "/fikal.jpeg", // Make sure this image exists in the public folder
   button_text: "My Resume",
-  button_link: "/resume.pdf", // Make sure this file exists in the public folder
+  button_link: "/Fikal_CV_English.pdf", // Make sure this file exists in the public folder
 };
 
 export const techList = {
@@ -37,8 +37,8 @@ export const techList = {
     { tech_name: "Express.js", tech_color: "#3776AB" },
     { tech_name: "Supabase", tech_color: "#3ECF8E" },
     { tech_name: "PostgreSQL", tech_color: "#06B6D4" },
+    { tech_name: "Astro.js", tech_color: "#88CE02" },
     { tech_name: "Three.js", tech_color: "#ffffff" },
-    { tech_name: "GSAP", tech_color: "#88CE02" },
   ],
 };
 
@@ -46,18 +46,25 @@ export const experience = {
   heading: "Experience",
   items: [
     {
-      title: "Community Organizer",
-      time_period: "2024 - Present",
+      title: "Vice President",
+      time_period: "2023 - Present",
       institution: "Plugin Study Club",
       description:
         "Led recruitment, onboarding, and community events for a local coding study club. Fostered a collaborative environment to help new members learn programming and build team projects.",
     },
     {
-      title: "Freelance Web Developer",
+      title: "Frontend Web Developer",
+      time_period: "2026",
+      institution: "Blauw.kof",
+      description:
+        "Built a web-based back-office platform interface for an inventory management system and modular Bill of Materials (BOM) to resolve raw material recording inefficiencies in the F&B business line.",
+    },
+    {
+      title: "Frontend Web Developer",
       time_period: "2025",
       institution: "Tempat Peraduan Group",
       description:
-        "Designed and developed user-friendly web interfaces for company profiles. Conducted user research and usability testing to drive UI/UX design decisions.",
+        "Developed a company profile website based on designs created by the Tempat Peraduan Group manager using Astro.js, while implementing 3D objects rendered with Three.js.",
     },
   ],
 };
@@ -100,7 +107,7 @@ export const projects = {
         link: "https://github.com/fikalalif/urpocketdigicam_web", // Link GitHub dipindah ke sini
         date: "2024-07-20",
       },
-      tags: ["Laravel", "MySQL", "API"],
+      tags: ["Laravel", "MySQL", "Rest API"],
       // Deskripsi diperbaiki agar sesuai dengan konteks platform kamera digital vintage
       description: "A web platform dedicated to cataloging and managing vintage digital camera collections, featuring a robust database architecture and seamless API integration.",
     },

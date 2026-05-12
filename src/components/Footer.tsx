@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import Link from "next/link";
 import Bounded from "@/components/Bounded";
-import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa6";
 import { settings } from "@/data/staticData";
 
 export default function Footer() {
@@ -62,13 +62,13 @@ export default function Footer() {
               <FaGithub />
             </Link>
           )}
-          {settings.twitter_link && (
+          {settings.instagram_link && (
             <Link
-              href={settings.twitter_link}
+              href={settings.instagram_link}
               className="p-2 text-2xl text-slate-300 transition-all duration-150 hover:scale-125 hover:text-yellow-400"
-              aria-label={settings.name + " on Twitter"}
+              aria-label={settings.name + " on Instagram"}
             >
-              <FaXTwitter />
+              <FaInstagram />
             </Link>
           )}
           {settings.linkedin_link && (
