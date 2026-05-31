@@ -23,7 +23,7 @@ export const hero = {
 export const biography = {
   heading: "About Me",
   body: "I am a Full-Stack and Mobile Developer. I have a strong passion for building impactful applications, ranging from AI-driven backend systems to visually engaging mobile apps. When I'm not writing code on my Ubuntu setup, you can find me exploring the latest tech trends or working on personal projects that push the boundaries of what's possible.",
-  avatar: "/fikal.jpeg", // Make sure this image exists in the public folder
+  avatar: "/formal-photo.jpeg", // Make sure this image exists in the public folder
   button_text: "My Resume",
   button_link: "/Fikal_CV_English.pdf", // Make sure this file exists in the public folder
 };
