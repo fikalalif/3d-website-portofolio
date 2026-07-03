@@ -68,7 +68,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       {/* Background Glow */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] -z-10 animate-pulse"></div>
 
-      <div className="grid min-h-[85vh] grid-cols-1 md:grid-cols-2 items-center">
+      <div className="grid min-h-[70vh] md:min-h-[85vh] grid-cols-1 md:grid-cols-2 items-center">
         <div className="col-start-1 flex flex-col items-center md:items-start text-center md:text-left">
           <h1 className="mb-6 text-[clamp(3rem,15vmin,10rem)] font-extrabold leading-none tracking-tighter">
             <span className="block text-slate-300 name-animation">Fikal</span>

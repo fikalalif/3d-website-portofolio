@@ -83,21 +83,11 @@ function Geometries() {
   ];
 
   const materials = [
-    new THREE.MeshNormalMaterial(),
-    new THREE.MeshStandardMaterial({ color: 0x2ecc71, roughness: 0 }),
-    new THREE.MeshStandardMaterial({ color: 0xf1c40f, roughness: 0.4 }),
-    new THREE.MeshStandardMaterial({ color: 0xe74c3c, roughness: 0.1 }),
-    new THREE.MeshStandardMaterial({ color: 0x8e44ad, roughness: 0.1 }),
-    new THREE.MeshStandardMaterial({ color: 0x1abc9c, roughness: 0.1 }),
+    new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0 }),
     new THREE.MeshStandardMaterial({
       roughness: 0,
       metalness: 0.5,
       color: 0x2980b9,
-    }),
-    new THREE.MeshStandardMaterial({
-      color: 0x2c3e50,
-      roughness: 0.1,
-      metalness: 0.5,
     }),
   ];
 
@@ -127,7 +117,7 @@ function Geometry({ r, position, geometry, materials, soundEffects }) {
   const meshRef = useRef();
 
   const initialBlackMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x000000, 
+    color: 0xffffff, 
     roughness: 0.1,
     metalness: 0.8
   });
