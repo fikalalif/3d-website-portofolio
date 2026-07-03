@@ -3,16 +3,37 @@
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Float, Environment } from "@react-three/drei";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 export function Shapes() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      // PERBAIKAN BUG: Tunggu sampai 5.6 detik
+      // (4.0 detik progress bar + 1.5 detik animasi tirai loading narik ke atas)
+      // Biar objek 3D lu nggak hilang ditelan tirai!
+      gsap.set(containerRef.current, {
+        zIndex: 10,
+        delay: 8, 
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="row-span-1 row-start-1 -mt-9 aspect-square  md:col-span-1 md:col-start-2 md:mt-0">
+    <div 
+      ref={containerRef}
+      className="row-span-1 row-start-1 -mt-9 aspect-square md:col-span-1 md:col-start-2 md:mt-0 relative z-[9999]"
+    >
       <Canvas
         className="z-0"
         shadows
-        gl={{ antialias: false }}
+        gl={{ 
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
         dpr={[1, 1.5]}
         camera={{ position: [0, 0, 25], fov: 30, near: 1, far: 40 }}
       >
@@ -61,12 +82,6 @@ function Geometries() {
     },
   ];
 
-  const soundEffects = [
-    new Audio("/sounds/hit2.ogg"),
-    new Audio("/sounds/hit3.ogg"),
-    new Audio("/sounds/hit4.ogg"),
-  ];
-
   const materials = [
     new THREE.MeshNormalMaterial(),
     new THREE.MeshStandardMaterial({ color: 0x2ecc71, roughness: 0 }),
@@ -86,23 +101,36 @@ function Geometries() {
     }),
   ];
 
+  const soundEffects = [
+    new Audio("/sounds/hit1.ogg"),
+    new Audio("/sounds/hit2.ogg"),
+    new Audio("/sounds/hit3.ogg"),
+    new Audio("/sounds/hit4.ogg"),
+    new Audio("/sounds/hit6.ogg"),
+    new Audio("/sounds/hit7.ogg"),
+    new Audio("/sounds/hit8.ogg"),
+  ];
+
   return geometries.map(({ position, r, geometry }) => (
     <Geometry
-      key={JSON.stringify(position)} // Unique key
+      key={JSON.stringify(position)}
       position={position.map((p) => p * 2)}
       geometry={geometry}
-      soundEffects={soundEffects}
       materials={materials}
       r={r}
+      soundEffects={soundEffects}
     />
   ));
 }
 
-function Geometry({ r, position, geometry, soundEffects, materials }) {
+function Geometry({ r, position, geometry, materials, soundEffects }) {
   const meshRef = useRef();
-  const [visible, setVisible] = useState(false);
 
-  const startingMaterial = getRandomMaterial();
+  const initialBlackMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0x000000, 
+    roughness: 0.1,
+    metalness: 0.8
+  });
 
   function getRandomMaterial() {
     return gsap.utils.random(materials);
@@ -110,9 +138,8 @@ function Geometry({ r, position, geometry, soundEffects, materials }) {
 
   function handleClick(e) {
     const mesh = e.object;
-
     gsap.utils.random(soundEffects).play();
-
+    
     gsap.to(mesh.rotation, {
       x: `+=${gsap.utils.random(0, 2)}`,
       y: `+=${gsap.utils.random(0, 2)}`,
@@ -121,44 +148,58 @@ function Geometry({ r, position, geometry, soundEffects, materials }) {
       ease: "elastic.out(1,0.3)",
       yoyo: true,
     });
-
+    
     mesh.material = getRandomMaterial();
   }
 
-  const handlePointerOver = () => {
-    document.body.style.cursor = "pointer";
-  };
-
-  const handlePointerOut = () => {
-    document.body.style.cursor = "default";
-  };
-
   useEffect(() => {
     let ctx = gsap.context(() => {
-      setVisible(true);
-      gsap.from(meshRef.current.scale, {
-        x: 0,
-        y: 0,
-        z: 0,
-        duration: gsap.utils.random(0.8, 1.2),
+      // 1. Tumpuk di tengah & sembunyikan ukuran
+      meshRef.current.position.set(0, 0, 0);
+      meshRef.current.scale.set(0, 0, 0);
+
+      // 2. Muncul saat progress bar jalan
+      gsap.to(meshRef.current.scale, {
+        x: 1,
+        y: 1,
+        z: 1,
+        duration: 1.2,
+        delay: 0.4, 
         ease: "elastic.out(1,0.3)",
-        delay: gsap.utils.random(0, 0.5),
+      });
+
+      // 3. Putaran mesin/inti
+      gsap.to(meshRef.current.rotation, {
+        x: `+=${Math.PI * 2}`,
+        y: `+=${Math.PI * 2}`,
+        duration: gsap.utils.random(4, 7),
+        repeat: -1,
+        ease: "linear",
+      });
+
+      // 4. Meledak (menyebar ke tempat aslinya) tepat di detik ke-4.0
+      gsap.to(meshRef.current.position, {
+        x: position[0],
+        y: position[1],
+        z: position[2],
+        duration: 1.5, 
+        delay: 4.0, 
+        ease: "power3.out", 
       });
     });
     return () => ctx.revert();
-  }, []);
+  }, [position]);
 
   return (
-    <group position={position} ref={meshRef}>
+    <group ref={meshRef}>
       <Float speed={5 * r} rotationIntensity={6 * r} floatIntensity={5 * r}>
         <mesh
           geometry={geometry}
           onClick={handleClick}
-          onPointerOver={handlePointerOver}
-          onPointerOut={handlePointerOut}
-          visible={visible}
-          material={startingMaterial}
-        ></mesh>
+          onPointerOver={() => (document.body.style.cursor = "pointer")}
+          onPointerOut={() => (document.body.style.cursor = "default")}
+          material={initialBlackMaterial} 
+        />
       </Float>
     </group>
   );

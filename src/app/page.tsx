@@ -11,10 +11,12 @@ import {
   experience,
   projects,
 } from "@/data/staticData";
+import Preloader from "@/components/Preloader";
 
 export default function Home() {
   return (
     <main>
+      <Preloader/>
       <Hero slice={hero} />
       <div id="about">
         <Biography slice={biography} />

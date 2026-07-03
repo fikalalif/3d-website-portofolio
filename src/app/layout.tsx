@@ -2,7 +2,6 @@ import "./globals.css";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { settings } from "@/data/staticData";
